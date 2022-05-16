@@ -26,8 +26,10 @@ int Chastot(int[,] array) //перебор всех элементов масс�
 {
     //int[] array1 = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
     int c = 0;
-    int[] result = new int[array.GetLength(0) * array.GetLongLength(1) * 2]; //массив для записи повторяющихся эл-ов
-    //int[] result1 = new int[array.Length]; // массив для подсчета повторов
+    double ind = array.GetLength(0) * array.GetLongLength(1);
+    Console.WriteLine($"ind = {ind}");
+    int[,] result = new int[2, (int)ind]; //в первой строке запись значения, во второй частота повтора
+
     for (int i = 0; i < array.GetLength(0); i++)
     {
         for (int j = 0; j < array.GetLength(1); j++)
@@ -35,32 +37,29 @@ int Chastot(int[,] array) //перебор всех элементов масс�
             foreach (int element in array)
                 if (array[i, j] == element)
                 {
-                    double index = array.GetLength(0) * array.GetLongLength(1) * 2 + c;
-                    result[c] = element; //запись эл-та
-                    result[(int)index] += 1; //счет записи во второй половине массива
+                    result[0, c] = array[i, j];
+                    result[1, c] += 1;
                     c += 1;
+
+                    //double index = (array.GetLength(0) * array.GetLongLength(1) - 1) + c;
+                    //Console.WriteLine($"index = {index}");
+                    //result[c] = element; //запись эл-та
+                    //result[(int)index] += 1; //счет записи во второй половине массива
                 }
             //Console.WriteLine(count);
         }
     }
-    return result[array.GetLength(0) * array.GetLongLength(1) * 2];
+    return result[2, (int)ind];
 
 }
 
-void PrintArrayResult(int[] result)
-{
-    int c = result.Length / 2;
-    for (int i = 0; i < result.Length / 2; i++)
-    {
-        Console.WriteLine($"{result[i]} встречается {result[result.Length / 2 + c]} раз");
-        c += 1;
-    }
-}
 
 int[,] array = new int[3, 3];
 RandomArray(array);
 PrintArray(array);
 Console.WriteLine(); // пустая строка для отделения напечатанного массива
 //int count = Chastot(array);
-int[] result = new int[(Chastot(array))];
-PrintArrayResult(result);
+double j = array.GetLength(0) * array.GetLongLength(1);
+int[,] result = new int[2, (int)j];
+Chastot(array);
+PrintArray(result); // печать массива результата
