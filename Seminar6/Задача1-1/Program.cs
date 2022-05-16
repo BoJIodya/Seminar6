@@ -32,16 +32,16 @@ int[,] FreqDictionary(int[,] array) //перебор всех элементов
     {
         for (int j = 0; j < array.GetLength(1); j++)
         {
-           // int number = array[i, j];
+            // int number = array[i, j];
             foreach (int number in array)
-            if (number == array[i, j])
-            {
-                result[0, count] = number;
-                result[1, count] += 1;
-                Console.WriteLine($"number = {number}");
-                Console.WriteLine($"count = {count}");
-                count++;
-            }
+                if (number == array[i, j])
+                {
+                    result[0, count] = number;
+                    result[1, count] += 1;
+                    Console.WriteLine($"number = {number}");
+                    Console.WriteLine($"count = {count}");
+                    count++;
+                }
 
         }
     }
@@ -49,13 +49,7 @@ int[,] FreqDictionary(int[,] array) //перебор всех элементов
 
 }
 
-int[,] FreqDictionary1(int[,] array)
-{
-    foreach(int number in array)
-    {
-        Console.WriteLine ($"number ={number}");
-    }
-}
+
 
 int[,] array = new int[3, 3];
 RandomArray(array);
@@ -64,6 +58,6 @@ Console.WriteLine(); // пустая строка для отделения на
 //int count = FreqDictionary(array);
 double j = array.GetLength(0) * array.GetLongLength(1);
 int[,] result = new int[2, (int)j];
-//result = FreqDictionary(array);
-FreqDictionary1(array);
-//PrintArray(result); // печать массива результата
+result = FreqDictionary(array);
+FreqDictionary(array);
+PrintArray(result); // печать массива результата
