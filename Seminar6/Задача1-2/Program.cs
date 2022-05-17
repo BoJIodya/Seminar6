@@ -48,36 +48,38 @@ int[] LineArray(int[,] array) // перевод массива в линейны
     return result;
 }
 
-void ScoreNumber(int[] array) //подсчет одинаковых
+int [,] ScoreNumber(int[] array) //подсчет одинаковых
 {
     int[,] score = new int[2, array.Length]; //запись в 0 строке числа, в 1 строке количество повторов
 
+    for (int j = 0; j < array.Length; j++)
+    {
+        score[0, j] = array[j];
+    }
+    //score[1, 0] = 1;
     foreach (int item in array)
     {
-        int count = 0;
         for (int i = 0; i < array.Length; i++)
         {
-            if (item == array[i])
+            if (score[0, i] == item)
             {
-                score[0, i] = item;
-                score[1, i] = count;
-                for (int j = 0; j < score.GetLength(1); j++)
-                {
-                    if (score[0, j] == item)
-                    {
-                        score[1, j] += 1;
-
-                    }
-                }
-
-
+                score[1, i] += 1;
             }
+            //else score[0, i] = item;
         }
     }
 
-
     Console.WriteLine("двуметный массив Score:");
     PrintArray(score);
+    return score;
+}
+
+void PrintResult (int[,] array)
+{
+    foreach (int number in array)
+    {
+        
+    }
 }
 
 int[,] array = new int[3, 3];
@@ -91,4 +93,5 @@ result = LineArray(array); //заполенение линейного масс�
 PrintLineArray(result);
 
 Console.WriteLine(); // пустая строка для отделения 
-ScoreNumber(result);
+int[,] score = new int[2, result.Length];
+score = ScoreNumber(result); //возврат массива с подсчетом частоты использования
