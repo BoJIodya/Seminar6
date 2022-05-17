@@ -38,17 +38,17 @@ void PrintLineArray(int[] array) // печать линейного массив
 
 int[] LineArray(int[,] array) // перевод массива в линейный
 {
-    int[] result = new int[array.GetLength(0) * array.GetLength(1)];
+    int[] ArrayLine = new int[array.GetLength(0) * array.GetLength(1)];
     int i = 0;
     foreach (int item in array)
     {
-        result[i] = item;
+        ArrayLine[i] = item;
         i++;
     }
-    return result;
+    return ArrayLine;
 }
 
-int [,] ScoreNumber(int[] array) //подсчет одинаковых
+int[,] ScoreNumber(int[] array) //подсчет одинаковых
 {
     int[,] score = new int[2, array.Length]; //запись в 0 строке числа, в 1 строке количество повторов
 
@@ -69,14 +69,32 @@ int [,] ScoreNumber(int[] array) //подсчет одинаковых
         }
     }
 
-    Console.WriteLine("двуметный массив Score:");
+    Console.WriteLine("двумерный массив Score:");
     PrintArray(score);
     return score;
 }
 
-void PrintResult (int[,] array)
+int[,] SortResult(int[,] array) // сортировка результата
 {
-    foreach (int number in array)
+
+    for (int i = 0; i < array.GetLength(1); i++)
+    {
+        int temp = array[0, i];
+        for (int j = i + 1; j < array.GetLength(1); j++)
+        {
+            if (temp == array[0, j]) array[1, j] = 0;
+        }
+
+    }
+
+    Console.WriteLine($"Массив после сортировки:");
+    PrintArray(array);
+    return array;
+}
+
+void PrintResult(int[,] array)
+{
+    for (int i = 0; i < array.GetLength(1); i++)
     {
         
     }
@@ -87,11 +105,14 @@ RandomArray(array);
 PrintArray(array);
 Console.WriteLine(); // пустая строка для отделения напечатанного массива
 
-int[] result = new int[array.GetLength(0) * array.GetLength(1)]; //линейный массив ёмкостью как двумерный
+int[] ArrayLine = new int[array.GetLength(0) * array.GetLength(1)]; //линейный массив ёмкостью как двумерный
 
-result = LineArray(array); //заполенение линейного массива из двумерного
-PrintLineArray(result);
+ArrayLine = LineArray(array); //заполенение линейного массива из двумерного
+PrintLineArray(ArrayLine);
 
 Console.WriteLine(); // пустая строка для отделения 
-int[,] score = new int[2, result.Length];
-score = ScoreNumber(result); //возврат массива с подсчетом частоты использования
+int[,] score = new int[2, ArrayLine.Length];
+score = ScoreNumber(ArrayLine); //возврат массива с подсчетом частоты использования
+
+score = SortResult(score); // сортировка результата
+
