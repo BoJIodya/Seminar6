@@ -48,6 +48,37 @@ int[] LineArray(int[,] array) // перевод массива в линейны
     return result;
 }
 
+void ScoreNumber(int[] array) //подсчет одинаковых
+{
+    int[,] score = new int[2, array.Length]; //запись в 0 строке числа, в 1 строке количество повторов
+
+    foreach (int item in array)
+    {
+        int count = 0;
+        for (int i = 0; i < array.Length; i++)
+        {
+            if (item == array[i])
+            {
+                score[0, i] = item;
+                score[1, i] = count;
+                for (int j = 0; j < score.GetLength(1); j++)
+                {
+                    if (score[0, j] == item)
+                    {
+                        score[1, j] += 1;
+
+                    }
+                }
+
+
+            }
+        }
+    }
+
+
+    Console.WriteLine("двуметный массив Score:");
+    PrintArray(score);
+}
 
 int[,] array = new int[3, 3];
 RandomArray(array);
@@ -56,6 +87,8 @@ Console.WriteLine(); // пустая строка для отделения на
 
 int[] result = new int[array.GetLength(0) * array.GetLength(1)]; //линейный массив ёмкостью как двумерный
 
-result = LineArray(array);
+result = LineArray(array); //заполенение линейного массива из двумерного
 PrintLineArray(result);
 
+Console.WriteLine(); // пустая строка для отделения 
+ScoreNumber(result);
