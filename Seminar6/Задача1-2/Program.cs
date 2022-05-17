@@ -96,7 +96,10 @@ void PrintResult(int[,] array)
 {
     for (int i = 0; i < array.GetLength(1); i++)
     {
-        
+        if(array[1,i]!=0)
+        {
+            Console.WriteLine($"Число {array[0,i]} используется {array[1,i]} раз");
+        }
     }
 }
 
@@ -116,3 +119,4 @@ score = ScoreNumber(ArrayLine); //возврат массива с подсче�
 
 score = SortResult(score); // сортировка результата
 
+PrintResult(score);
