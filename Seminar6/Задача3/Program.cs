@@ -1,2 +1,16 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿// определяем кол-во строк в треугольнике Паскаля (переменной)
+// метод подсчета факториала
+// что бы вывести треугольник, нужно сделать отступы. Нижний угол будет самый левый, значит там будет n чисел, отступ n/2 (округлить до целого бОльшего)
+
+
+int n = 7; // число строк
+
+int Faktorial(int n)
+{
+    int result = 1;
+    for (int i = 1; i <= n; i++)
+    {
+        result *=i;
+        Console.WriteLine(result);
+    }
+}
