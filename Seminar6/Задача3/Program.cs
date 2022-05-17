@@ -3,7 +3,6 @@
 // что бы вывести треугольник, нужно сделать отступы. Нижний угол будет самый левый, значит там будет n чисел, отступ n/2 (округлить до целого бОльшего)
 
 
-int n = 7; // число строк
 
 int Faktorial(int n)
 {
@@ -13,4 +12,8 @@ int Faktorial(int n)
         result *=i;
         Console.WriteLine(result);
     }
+    return result;
 }
+
+int n = 7; // число строк
+Faktorial(n);
