@@ -35,6 +35,10 @@ void PaskalTriangle(int n)
     }
 }
 
-int n = 15; // число строк
-//Faktorial(n);
-PaskalTriangle(n);
+int n = 3; // число строк
+if (n <= 2)
+{
+    Console.WriteLine($"Нужно число побольше!");
+    
+}
+else PaskalTriangle(n);
