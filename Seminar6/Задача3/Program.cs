@@ -28,12 +28,13 @@ void PaskalTriangle(int n)
             Console.Write("  "); // создаём пробелы между элементами треугольника
             int print = Faktorial(i) / (Faktorial(c) * (Faktorial(i - c)));
             if (print % 2 != 0) Console.Write(print); // проверка на нечетность
+            else Console.Write($"  ");
         }
         Console.WriteLine(); // отступ между строк
         Console.WriteLine(); // отступ между строк
     }
 }
 
-int n = 12; // число строк
+int n = 15; // число строк
 //Faktorial(n);
 PaskalTriangle(n);
