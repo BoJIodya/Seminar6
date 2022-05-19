@@ -79,12 +79,21 @@ int[,] FillArray1(int[,] array, int q, int s)
 
     if (step >= 1)
     {
-        k = q+1; o = q+1;
+        k = q + 1; o = q + 1;
         Console.WriteLine($"K = {k} O= {o}"); // прверочная строка
         for (int a = 1; a < step - 1; a++)
         {
             q++;
             FillArray1(array, q, s);
+        }
+    }
+
+    for (int i = 0; i < array.GetLength(0); i++)
+    {
+        for (int j = 0; j < array.GetLength(1); j++)
+        {
+            if (array[i, j] == 0)
+                array[i, j] = s;
         }
     }
     return array;
@@ -104,7 +113,11 @@ void PrintArray(int[,] array) //печать массива
 }
 
 
-int[,] array = new int[2, 2]; // ввестит проверку на квадратность матрицы
+int[,] array = new int[5, 5];
+if (array.GetLength(0) != array.GetLength(1)) Console.WriteLine($"Введите параметры квадратной матрицы");
+else
+{
+    array = FillArray(array);
+    PrintArray(array);
+}
 
-array = FillArray(array);
-PrintArray(array);
