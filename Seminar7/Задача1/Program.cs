@@ -8,6 +8,7 @@ int[,] FillArray(int[,] array)
     int i = array.GetLength(0);
     int j = array.GetLength(1);
     int s = 1;
+    int q = 1;
 
     for (int y = 0; y < j; y++) //заполняет строчку 0,j (+)
     {
@@ -27,43 +28,65 @@ int[,] FillArray(int[,] array)
             s++;
         }
     }
-    for (int y = i - 1; y > 0; y--) // заполняет столбец 0,j (+)
+    for (int y = i - 2; y > 0; y--) // заполняет столбец 0,j (+)
     {
         array[y, 0] = s;
         s++;
     }                               // периметр заполнен
 
-    int k = 1, o = 1;
+    array = FillArray1(array, q, s);
+    return array;
+}
 
-    while (array[k, o + 1] == 0) //заполняется строка(+)
+int[,] FillArray1(int[,] array, int q, int s)
+{
+    int k = q, o = q;
+    //Console.WriteLine(array[k, o+q]); // прверочная строка
+
+    while (array[k, o + q] == 0) // движемся вправо
     {
+        Console.WriteLine($"K = {k} O= {o} движемся вправо");
         array[k, o] = s;
         s++;
         o++;
     }
 
-    while (array[k + 1, o - 1] == 0) //заполняется столбец
+    while (array[k + q, o - q] == 0) // движемся вниз
     {
+        Console.WriteLine($"K = {k} O= {o} движемся вниз");
         array[k, o] = s;
         s++;
         k++;
     }
-    while (array[k, o] == 0) //заполняется строка, нижняя
+    while (array[k, o - q] == 0) // движемся влево
     {
+        Console.WriteLine($"K = {k} O= {o} движемся влево");
         array[k, o] = s;
         s++;
         o--;
-        Console.WriteLine(array[k, o]);
     }
 
-    while (array[k-1, o+1] == 0) //заполняется столбец, левый
+    while (array[k, o] == 0) // движемся вверх
     {
-        array[k-1, o+1] = s;
+        Console.WriteLine($"K = {k} O= {o} движемся вверх");
+        array[k, o] = s;
         s++;
-        o++;
-        Console.WriteLine(array[k, o]);
+        k--;
     }
+    //q++;
 
+    int step = array.GetLength(0) - 5;
+
+    if (step >= 1)
+    {
+        k = q+1; o = q+1;
+        Console.WriteLine($"K = {k} O= {o}"); // прверочная строка
+        for (int a = 1; a < step - 1; a++)
+        {
+            q++;
+            FillArray1(array, q, s);
+        }
+    }
     return array;
 
 }
@@ -81,7 +104,7 @@ void PrintArray(int[,] array) //печать массива
 }
 
 
-int[,] array = new int[5, 5];
+int[,] array = new int[2, 2]; // ввестит проверку на квадратность матрицы
 
 array = FillArray(array);
 PrintArray(array);
